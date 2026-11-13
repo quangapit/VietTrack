@@ -1,4 +1,4 @@
-VietTrack 🇻🇳
+# VietTrack 🇻🇳
 
 Multi-carrier Parcel Tracking for Vietnam
 
@@ -6,7 +6,7 @@ A lightweight Python CLI tool to track shipments across multiple Vietnamese ship
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python) !Platform !License !Open Source
 
-✨ Introduction
+# ✨ Introduction
 
 VietTrack is a simple and lightweight parcel tracking tool written in Python.
 
@@ -15,7 +15,7 @@ It allows you to track shipments from multiple Vietnamese shipping carriers usin
 No need to visit multiple tracking websites. Just provide your tracking number and VietTrack will automatically detect the carrier and retrieve shipment history whenever supported.
 
 
-## 🚀 Features
+# 🚀 Features
 
 - 🔍 **Automatic Carrier Detection**
   Automatically detect shipping carriers based on tracking number patterns.
@@ -36,9 +36,9 @@ No need to visit multiple tracking websites. Just provide your tracking number a
 - 🔓 **Open Source**
   Free to use, modify, and contribute.
   
-- 📦 Supported Carriers
+# 📦 Supported Carriers
 
-# VietTrack supports the following shipping carriers:
+VietTrack supports the following shipping carriers:
 - Carrier	Support	Tracking Method
 - SPX Express	✅	Direct API
 - LEX	✅	Direct API
@@ -58,13 +58,13 @@ No need to visit multiple tracking websites. Just provide your tracking number a
 
 Carrier availability and tracking methods may change over time.
 
-🛠️ Requirements
+# 🛠️ Requirements
 Python 3.8 or newer.
 Internet connection.
 
 No third-party Python packages are required.
 
-📥 Installation
+# 📥 Installation
 1. Clone the repository
 ```hash
 git clone https://github.com/quangapit/VietTrack.git
@@ -80,7 +80,7 @@ python track.py SPXVN123456789
 
 That's it! No additional dependencies are required.
 
-💡 Usage
+# 💡 Usage
 Basic Tracking
 
 Simply provide your tracking number:
@@ -138,7 +138,7 @@ Hãng vận chuyển được hỗ trợ:
   GHTK
   TikTok Express
 
-📋 Example Output
+# 📋 Example Output
 text
 Hãng: SPX | Mã: SPXVN123456789
 
@@ -156,12 +156,12 @@ Trạng thái: Đang vận chuyển
 The output above is for demonstration purposes only.
 
 # 📂 Project Structure
-text
+```text
 VietTrack/
 │
 ├── track.py
-
-⚙️ How It Works
+```
+# ⚙️ How It Works
 
 VietTrack uses regular expressions to identify shipping carriers based on tracking number formats.
 
@@ -176,7 +176,7 @@ Displays the shipment history in the terminal.
 
 If direct tracking is unavailable, VietTrack attempts to use a fallback tracking service or provides a tracking website when the tracking number matches a supported format.
 
-🔐 Privacy & Security
+# 🔐 Privacy & Security
 Tracking requests are sent to external carrier APIs or tracking services.
 Phone verification digits may be transmitted when required.
 VietTrack does not maintain its own shipment database.
@@ -203,7 +203,7 @@ This project uses publicly accessible tracking endpoints and third-party trackin
 
 Users are responsible for complying with the terms of service and applicable policies of the respective carriers.
 
-🤝 Contributing
+# 🤝 Contributing
 
 Contributions are welcome!
 
@@ -228,7 +228,7 @@ Open a Pull Request.
 
 We appreciate every contribution!
 
-🗺️ Roadmap
+# 🗺️ Roadmap
 Automatic carrier detection.
 Multi-carrier tracking.
 Tracking history display.
@@ -246,7 +246,7 @@ If you find VietTrack useful, please consider giving this repository a ⭐ Star 
 
 Your support helps the project reach more developers and encourages further development.
 
-📄 License
+# 📄 License
 
 This project is intended to be distributed under the MIT License.
 
