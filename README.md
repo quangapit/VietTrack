@@ -66,17 +66,17 @@ No third-party Python packages are required.
 
 📥 Installation
 1. Clone the repository
-bash
+```hash
 git clone https://github.com/quangapit/VietTrack.git
-
-2. Navigate to the project directory
-bash
+```
+3. Navigate to the project directory
+```bash
 cd VietTrack
-
-3. Run VietTrack
-bash
+```
+4. Run VietTrack
+```bash
 python track.py SPXVN123456789
-
+```
 
 That's it! No additional dependencies are required.
 
@@ -85,9 +85,9 @@ Basic Tracking
 
 Simply provide your tracking number:
 
-bash
+```bash
 python track.py SPXVN123456789
-
+```
 
 VietTrack will automatically identify the carrier and retrieve tracking information.
 
@@ -97,15 +97,15 @@ Some carriers require the last four digits of the recipient's phone number.
 
 GHN:
 
-bash
+```bash
 python track.py GHN123456789 1234
-
+```
 
 J&T Express:
 
-bash
+```bash
 python track.py JT1234567890 1234
-
+```
 
 Replace 1234 with the actual last four digits of the phone number associated with the shipment.
 
@@ -113,16 +113,16 @@ Open Tracking Website Automatically
 
 For carriers that require JavaScript or CAPTCHA verification:
 
-bash
+```bash
 python track.py TRACKING_NUMBER --open
-
+```
 
 VietTrack will open the corresponding tracking website in your default browser when a matching tracking format is available.
 
 List Supported Carriers
-bash
+```bash
 python track.py --track
-
+```
 
 Example output:
 
@@ -212,18 +212,18 @@ If you want to improve VietTrack, add support for new carriers, or fix bugs, fee
 How to Contribute
 Fork this repository.
 Create a new branch.
-bash
+```bash
 git checkout -b feature/new-carrier
-
+```
 Make your changes.
 Commit your changes.
-bash
+```bash
 git commit -m "Add support for new carrier"
-
+```
 Push your branch.
-bash
+```bash
 git push origin feature/new-carrier
-
+```
 Open a Pull Request.
 
 We appreciate every contribution!
