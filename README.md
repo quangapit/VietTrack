@@ -157,9 +157,9 @@ The output above is for demonstration purposes only.
 
 # 📂 Project Structure
 text
-- VietTrack/
--│
--├── track.py
+VietTrack/
+│
+├── track.py
 
 ⚙️ How It Works
 
