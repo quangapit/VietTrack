@@ -2,17 +2,17 @@
 
 Multi-carrier Parcel Tracking for Vietnam
 
-A lightweight Python CLI tool to track shipments across multiple Vietnamese shipping carriers.
+- A lightweight Python CLI tool to track shipments across multiple Vietnamese shipping carriers.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python) !Platform !License !Open Source
 
 # ✨ Introduction
 
-VietTrack is a simple and lightweight parcel tracking tool written in Python.
+- VietTrack is a simple and lightweight parcel tracking tool written in Python.
 
-It allows you to track shipments from multiple Vietnamese shipping carriers using a single command-line interface.
+- It allows you to track shipments from multiple Vietnamese shipping carriers using a single command-line interface.
 
-No need to visit multiple tracking websites. Just provide your tracking number and VietTrack will automatically detect the carrier and retrieve shipment history whenever supported.
+- No need to visit multiple tracking websites. Just provide your tracking number and VietTrack will automatically detect the carrier and retrieve shipment history whenever supported.
 
 
 # 🚀 Features
@@ -78,7 +78,7 @@ cd VietTrack
 python track.py SPXVN123456789
 ```
 
-That's it! No additional dependencies are required.
+- That's it! No additional dependencies are required.
 
 # 💡 Usage
 Basic Tracking
@@ -89,11 +89,11 @@ Simply provide your tracking number:
 python track.py SPXVN123456789
 ```
 
-VietTrack will automatically identify the carrier and retrieve tracking information.
+- VietTrack will automatically identify the carrier and retrieve tracking information.
 
 Track with Phone Verification
 
-Some carriers require the last four digits of the recipient's phone number.
+- Some carriers require the last four digits of the recipient's phone number.
 
 GHN:
 
@@ -107,7 +107,7 @@ J&T Express:
 python track.py JT1234567890 1234
 ```
 
-Replace 1234 with the actual last four digits of the phone number associated with the shipment.
+- Replace 1234 with the actual last four digits of the phone number associated with the shipment.
 
 Open Tracking Website Automatically
 
@@ -117,7 +117,7 @@ For carriers that require JavaScript or CAPTCHA verification:
 python track.py TRACKING_NUMBER --open
 ```
 
-VietTrack will open the corresponding tracking website in your default browser when a matching tracking format is available.
+- VietTrack will open the corresponding tracking website in your default browser when a matching tracking format is available.
 
 List Supported Carriers
 ```bash
@@ -163,24 +163,24 @@ VietTrack/
 ```
 # ⚙️ How It Works
 
-VietTrack uses regular expressions to identify shipping carriers based on tracking number formats.
+- VietTrack uses regular expressions to identify shipping carriers based on tracking number formats.
 
 Depending on the carrier, the tool:
 
-Detects the carrier automatically.
-Sends a tracking request to an available tracking endpoint.
-Retrieves shipment tracking events.
-Parses tracking timestamps, descriptions, and locations.
-Sorts tracking events by time.
-Displays the shipment history in the terminal.
+- Detects the carrier automatically.
+- Sends a tracking request to an available tracking endpoint.
+- Retrieves shipment tracking events.
+- Parses tracking timestamps, descriptions, and locations.
+- Sorts tracking events by time.
+- Displays the shipment history in the terminal.
 
-If direct tracking is unavailable, VietTrack attempts to use a fallback tracking service or provides a tracking website when the tracking number matches a supported format.
+- If direct tracking is unavailable, VietTrack attempts to use a fallback tracking service or provides a tracking website when the tracking number matches a supported format.
 
 # 🔐 Privacy & Security
-Tracking requests are sent to external carrier APIs or tracking services.
-Phone verification digits may be transmitted when required.
-VietTrack does not maintain its own shipment database.
-Avoid sharing tracking numbers and personal information publicly.
+- Tracking requests are sent to external carrier APIs or tracking services.
+- Phone verification digits may be transmitted when required.
+- VietTrack does not maintain its own shipment database.
+- Avoid sharing tracking numbers and personal information publicly.
 ⚠️ Disclaimer
 
 VietTrack is an independent open-source project.
@@ -229,17 +229,17 @@ Open a Pull Request.
 We appreciate every contribution!
 
 # 🗺️ Roadmap
-Automatic carrier detection.
-Multi-carrier tracking.
-Tracking history display.
-Phone verification support.
-Direct tracking website support.
-More Vietnamese shipping carriers.
-Improved error handling.
-JSON output mode.
-REST API support.
-Web dashboard.
-Unit tests.
+- Automatic carrier detection.
+- Multi-carrier tracking.
+- Tracking history display.
+- Phone verification support.
+- Direct tracking website support.
+- More Vietnamese shipping carriers.
+- Improved error handling.
+- JSON output mode.
+- REST API support.
+- Web dashboard.
+- Unit tests.
 ⭐ Support the Project
 
 If you find VietTrack useful, please consider giving this repository a ⭐ Star on GitHub.
