@@ -126,7 +126,7 @@ python track.py --track
 
 Example output:
 
-text
+```text
 Hãng vận chuyển được hỗ trợ:
   SPX
   LEX
@@ -137,9 +137,9 @@ Hãng vận chuyển được hỗ trợ:
   Ninja Van
   GHTK
   TikTok Express
-
+```
 # 📋 Example Output
-text
+```text
 Hãng: SPX | Mã: SPXVN123456789
 
 Trạng thái: Đang vận chuyển
@@ -151,7 +151,7 @@ Trạng thái: Đang vận chuyển
 
 20:45 12/11/2026  Đơn hàng đã được lấy thành công
    Kho lấy hàng
-
+```
 
 The output above is for demonstration purposes only.
 
