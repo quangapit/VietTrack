@@ -15,13 +15,13 @@ It allows you to track shipments from multiple Vietnamese shipping carriers usin
 No need to visit multiple tracking websites. Just provide your tracking number and VietTrack will automatically detect the carrier and retrieve shipment history whenever supported.
 
 🚀 Features
-🔍 Automatic Carrier Detection – Detect shipping carriers based on tracking number patterns.
+🔍 Automatic Carrier Detection – Automatically detect shipping carriers based on tracking number patterns.
 📦 Multi-carrier Tracking – Support multiple Vietnamese shipping services.
 📋 Tracking History – Display detailed shipment tracking events.
 📍 Location Information – Show shipment locations when available.
 📱 Phone Verification – Support phone verification for certain carriers.
 🌐 Direct Tracking Links – Open carrier tracking websites when direct tracking is unavailable.
-⚡ Lightweight – Built with Python standard libraries.
+⚡ Lightweight – Built using Python standard libraries without additional dependencies.
 💻 CLI Interface – Simple and easy-to-use command-line interface.
 🔓 Open Source – Free to use, modify, and contribute.
 📦 Supported Carriers
