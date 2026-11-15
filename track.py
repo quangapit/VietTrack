@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 import hashlib
 import json
 import re
@@ -15,7 +15,7 @@ CARRIERS = [
     ("spx", re.compile(r"^SPXVN\d{8,}[A-Z]?$"), False),
     ("lex", re.compile(r"^LEX[A-Z0-9]{8,}$"), False),
     ("ghn", re.compile(r"^(GHN-?[A-Z0-9]{6,}|G[A-Z0-9]{7})$"), True),
-    ("jtexpress", re.compile(r"^JT\d{10,}$"), True),
+    ("jtexpress", re.compile(r"^(JT|JNT)[A-Z0-9]{8,}$"), True),
 ]
 
 RENDERED = [
@@ -40,6 +40,20 @@ LEX_URL = "https://lex.vn/api/get_package_history"
 GHN_URL = "https://fe-online-gateway.ghn.vn/order-tracking/public-api/client/tracking-logs"
 JT_URL = "https://jtexpress.vn/tracking?type=track&billcode=%s"
 
+USAGE = """\
+Cách dùng:
+  python track.py <mã vận đơn> [4 số cuối SĐT]
+  python track.py --track            # liệt kê các hãng hỗ trợ
+  python track.py <mã> --open        # mở link tra cứu cần reCAPTCHA/JS
+  python track.py -h | --help        # hiện trợ giúp này
+
+Ví dụ:
+  python track.py SPXVN0123456789
+  python track.py GHN1A2B3C4D 1234
+  python track.py JT1234567890 5678
+  python track.py P1234567890VN
+  python track.py --track
+""" 
 
 def _req(url, body=None, headers=None):
     h = {"User-Agent": "Mozilla/5.0"}
@@ -68,14 +82,26 @@ def _ghn_events(code, phone=None):
     return events_of(_json(_req(GHN_URL, {"order_code": code, "phone_verify": verify})))
 
 
+def _jt_parse(html):
+    out = []
+    for ch in html.split('class="result-vandon-item')[1:]:
+        tm = re.search(r">\s*(\d{2}:\d{2}:\d{2})\s*<", ch)
+        dt = re.search(r">\s*(\d{4}-\d{2}-\d{2})\s*<", ch)
+        if not (tm and dt):
+            continue
+        ts = datetime.strptime("%s %s" % (dt.group(1), tm.group(1)), "%Y-%m-%d %H:%M:%S")
+        d = re.search(r"<div>\s*(.*?)\s*</div>", ch[dt.end():], re.S)
+        desc = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", d.group(1) if d else "")).strip()
+        out.append((ts.timestamp(), "%s %s" % (tm.group(1), ts.strftime("%d/%m/%Y")), desc, ""))
+    return out
+
+
 def _jt_events(code, phone=None):
-    html = _req(JT_URL % urllib.parse.quote(code))
-    m = re.search(r'class="result-tracking[^"]*"[^>]*>(.*?)<div class="result-office', html, re.S)
-    block = m.group(1) if m else ""
-    if not block or "Không tìm thấy dữ liệu về vận đơn" in block:
-        return []
-    lines = [l.strip() for l in re.sub(r"<[^>]+>", "\n", block).splitlines() if l.strip()]
-    return [(0, "", l, "") for l in lines]
+    url = JT_URL % urllib.parse.quote(code)
+    if phone:
+        url += "&cellphone=" + urllib.parse.quote(str(phone)[-4:])
+    return _jt_parse(_req(url))
+
 
 
 DIRECT = {
@@ -152,8 +178,24 @@ def _walk(obj):
 
 
 def main():
-    if len(sys.argv) < 2:
-        sys.exit(__doc__)
+    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+        print("Lỗi: thiếu mã vận đơn.\n", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
+        sys.exit(2)
+
+    for a in sys.argv[1:]:
+        if a.startswith("-") and not a.startswith("--") and a != "-h":
+            if a == "-track":
+                print("Lỗi: bạn nhập '-track' (1 dấu gạch). "
+                      "Đúng phải là '--track' (2 dấu gạch).\n",
+                      file=sys.stderr)
+                print("Vui lòng nhập lại: python track.py --track\n", file=sys.stderr)
+            else:
+                print("Lỗi: tùy chọn không hợp lệ '%s'. "
+                      "Tùy chọn phải bắt đầu bằng '--'.\n" % a,
+                      file=sys.stderr)
+                print(USAGE, file=sys.stderr)
+            sys.exit(2)
     if "--track" in sys.argv:
         print("Hãng vận chuyển được hỗ trợ:")
         for name, _, _ in CARRIERS:
@@ -168,7 +210,12 @@ def main():
     argv = [a for a in sys.argv[1:] if a != "--open"]
     do_open = "--open" in sys.argv
     code = argv[0].strip().upper()
+    if not code:
+        print("Lỗi: mã vận đơn rỗng.\n", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
+        sys.exit(2)
     phone = argv[1] if len(argv) > 1 else None
+
 
     specific = NO_TRACKING[1].match(code) or any(p.match(code) for _, p, _ in RENDERED[:-1])
     matched = [c for c, pat, _ in CARRIERS if pat.match(code)]
@@ -221,4 +268,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
